@@ -16,7 +16,7 @@ const ProductWrapper = ({ data, startTransition, setIsRotated }) => {
   const textProgressTwo = useTransform(
     scrollYProgress,
     [0.2, 1],
-    ["100%", "80%"]
+    ["100%", "60%"]
   );
 
   return (
@@ -38,6 +38,7 @@ const ProductWrapper = ({ data, startTransition, setIsRotated }) => {
         backgroundSize="cover"
         backgroundPosition="center"
         onClick={() => startTransition()}
+        cursor="pointer"
       />
       <Flex
         as={motion.div}
@@ -47,7 +48,7 @@ const ProductWrapper = ({ data, startTransition, setIsRotated }) => {
         top="60%"
         w="fit-content"
         right="20%"
-        h="100px"
+        h="fit-content"
         style={{ top: textProgress, scale: scaleProgress }}
         onClick={() => setIsRotated((prev) => !prev)}
       >
@@ -58,14 +59,18 @@ const ProductWrapper = ({ data, startTransition, setIsRotated }) => {
         fontSize="60px"
         overflow="hidden"
         position="absolute"
-        top="60%"
+        // top="40%"
         w="fit-content"
         left="10%"
         // bg="green"
 
         style={{ top: textProgressTwo, scale: scaleProgress }}
       >
-        <Description data={data} startTransition={startTransition} />
+        <Description
+          data={data}
+          startTransition={startTransition}
+          setIsRotated={setIsRotated}
+        />
       </Flex>
     </Flex>
   );
@@ -102,11 +107,13 @@ function Price({ data }) {
       variants={containerVariants}
       animate={textIsInView ? "inView" : "outOfView"}
       gap="5px"
-      fontWeight="bold"
+      fontWeight="extrabold"
       fontSize={["50px", "60px", "80px"]}
+      style={{ WebkitTextStroke: "4px white" }}
+      color="transparent"
     >
       <Flex as={motion.div} variants={variants}>
-        <Text>{data.dolar},</Text>
+        <Text>${data.dolar},</Text>
       </Flex>
       <Flex as={motion.div} variants={variants}>
         <Text>{data.cents}</Text>
@@ -115,7 +122,7 @@ function Price({ data }) {
   );
 }
 
-function Description({ data, startTransition }) {
+function Description({ data, startTransition, setIsRotated }) {
   const ref = useRef(null);
   const textIsInView = useInView(ref);
   const containerVariants = {
@@ -138,6 +145,7 @@ function Description({ data, startTransition }) {
       transition: { duration: 0 },
     },
   };
+
   return (
     <Flex
       as={motion.div}
@@ -161,14 +169,39 @@ function Description({ data, startTransition }) {
           <Text>{data.description}</Text>
         </Flex>
       </Flex>
-      <Flex h="fit-content" w="fit-content" overflow="hidden">
+      <Flex h="fit-content" gap="10px" w="100%" overflow="hidden">
         <Button
           as={motion.button}
           variants={variants}
-          bg="rgb(255, 42, 42)"
+          whileTap={{ scale: 0.9, bg: data.buttonColor[1] }}
+          //   whileHover={{ bg: data.buttonColor[1] }}
+          bg={data.buttonColor[0]}
+          _hover={{ bg: data.buttonColor[1] }}
+          _active={data.buttonColor[1]}
+          color={data.color}
+          w="70%"
+          h={["50px", "70px"]}
           onClick={() => startTransition()}
+          fontSize="30px"
         >
           Buy now
+        </Button>
+        <Button
+          as={motion.button}
+          variants={variants}
+          whileTap={{ scale: 0.9, bg: data.buttonColor[1] }}
+          //   //   whileHover={{ bg: data.buttonColor[1] }}
+          //   bg={data.buttonColor[0]}
+          //   _hover={{ bg: data.buttonColor[1] }}
+          //   _active={data.buttonColor[1]}
+          //   color={data.color}
+          px="5px"
+          w="20%"
+          h={["50px", "70px"]}
+          onClick={() => setIsRotated(true)}
+          fontSize={["16px", "20px"]}
+        >
+          <Text>Options</Text>
         </Button>
       </Flex>
     </Flex>

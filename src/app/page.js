@@ -1,11 +1,12 @@
 "use client";
+import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero";
 import ProductWrapper from "@/components/Product/ProductWrapper";
 import Backside from "@/components/tansition/Backside";
 import Transition from "@/components/tansition/Transition";
 
 import { Flex } from "@chakra-ui/react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 const test = [
@@ -14,54 +15,80 @@ const test = [
     dolar: "120",
     cents: "99",
     description: "Nike Free RN Flex - Crimson Rush",
+    buttonColor: ["red", "#f32f2f"],
+    color: "white",
   },
   {
     image: `url(/ShoeTwoImage.png)`,
     dolar: "320",
     cents: "25",
-    description: "Nike Free RN Flex - Crimson Rush",
+    description: "Neon Glide Runners",
+    buttonColor: ["rgb(112 229 84)", "rgb(118 217 95)"],
+    color: "black",
   },
   {
     image: `url(/ShoeThreeImage.png)`,
     dolar: "10",
     cents: "59",
-    description: "Nike Free RN Flex - Crimson Rush",
+    description: "Purple Pulse Sneakers",
+    buttonColor: ["rgb(147 57 225)", "rgb(150 70 219)"],
+    color: "white",
   },
   {
     image: `url(/ShoeFourImage.png)`,
     dolar: "120",
     cents: "99",
-    description: "Nike Free RN Flex - Crimson Rush",
+    description: "Charcoal Craft Oxfords",
+    buttonColor: ["rgb(147 57 225)", "rgb(150 70 219)"],
+    color: "white",
   },
   {
     image: `url(/ShoeFiveImage.png)`,
     dolar: "120",
     cents: "99",
-    description: "Nike Free RN Flex - Crimson Rush",
+    description: "Blush Runner Classics",
+    buttonColor: ["rgb(213 140 187)", "rgb(203 103 167)"],
+    color: "black",
   },
   {
     image: `url(/ShoeOneImage.png)`,
-    dolar: "300",
+    dolar: "120",
     cents: "99",
     description: "Nike Free RN Flex - Crimson Rush",
+    buttonColor: ["red", "#f32f2f"],
+    color: "white",
   },
   {
     image: `url(/ShoeTwoImage.png)`,
-    dolar: "120",
-    cents: "99",
-    description: "Nike Free RN Flex - Crimson Rush",
+    dolar: "320",
+    cents: "25",
+    description: "Volt Sprint Trainers",
+    buttonColor: ["rgb(112 229 84)", "rgb(118 217 95)"],
+    color: "black",
   },
   {
     image: `url(/ShoeThreeImage.png)`,
-    dolar: "120",
-    cents: "99",
-    description: "Nike Free RN Flex - Crimson Rush",
+    dolar: "10",
+    cents: "59",
+    description: "Twilight Blaze Runners",
+    buttonColor: ["rgb(147 57 225)", "rgb(150 70 219)"],
+    color: "white",
   },
   {
-    image: `url(/ShoeThreeImage.png)`,
+    image: `url(/ShoeFourImage.png)`,
     dolar: "120",
     cents: "99",
-    description: "Nike Free RN Flex - Crimson Rush",
+    description: "Graphite Gentleman Derbies",
+    buttonColor: ["rgb(147 57 225)", "rgb(150 70 219)"],
+    color: "white",
+  },
+  {
+    image: `url(/ShoeFiveImage.png)`,
+    dolar: "120",
+    cents: "99",
+    description: "Rosy Retro Sneakers",
+    buttonColor: ["rgb(213 140 187)", "rgb(203 103 167)"],
+    color: "black",
   },
 ];
 
@@ -101,8 +128,6 @@ export default function Home() {
     }, (1.5 + 0.2 * 4) * 2000);
   };
 
-  console.log(isRotated);
-
   return (
     <Flex bg="black">
       <Flex
@@ -117,6 +142,8 @@ export default function Home() {
         initial="centered"
         animate={isRotated ? "rotated" : "centered"}
         color="white"
+        px="10px"
+        position="relative"
       >
         <Hero />
         {test.map((item, index) => (

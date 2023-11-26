@@ -21,7 +21,7 @@ const Backside = ({ isRotated, setIsRotated }) => {
     <Flex
       as={motion.div}
       variants={containerVariants}
-      onClick={() => setIsRotated(false)}
+      //   onClick={() => setIsRotated(false)}
       animate={isRotated ? "visible" : "notVisible"}
       position="fixed"
       top="0"
@@ -55,15 +55,16 @@ function MyButton({ setIsRotated }) {
         as={motion.div}
         whileHover={{ scale: 1.1 }}
         variants={childVariants}
-        h="80px"
-        w="200px"
-        borderRadius="20px"
-        bg="green"
+        h={["40px", "80px", "80px"]}
+        w={["100px", "170px", "200px"]}
+        borderRadius="10px"
+        bg="rgb(255, 255, 0)"
         justify="center"
         align="center"
+        fontSize={["20px", "30px", "36px"]}
         onClick={() => setIsRotated(false)}
       >
-        Close
+        Options ;)
       </Flex>
     </Flex>
   );
