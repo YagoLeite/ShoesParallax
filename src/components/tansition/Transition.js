@@ -40,8 +40,7 @@ const Transition = ({ transitionAnim }) => {
           key={index}
           variants={childVariants}
           flex="1"
-          bg="white"
-          //   style={{ flex: "1", background: `hsl(${index * 50}, 70%, 50%)` }}
+          bg="gray.400"
         />
       ))}
     </Flex>
